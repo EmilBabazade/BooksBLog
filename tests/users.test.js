@@ -46,6 +46,7 @@ describe('creating a user', () => {
 
 		await api
 			.post('/api/users/')
+			.send(user)
 			.expect(201)
 			.expect('Content-Type', /application\/json/)
 
@@ -69,12 +70,13 @@ describe('creating a user', () => {
 
 			const result = await api
 				.post('/api/users/')
+				.send(user)
 				.expect(400)
 				.expect('Content-Type', /application\/json/)
 
 			const { error } = result.body
-			expect(error.type).toBe('minlength')
 			expect(error.path).toBe('username')
+			expect(error.type).toBe('minlength')
 		})
 
 	test('if password length less than 5 return correct status code and error',
@@ -88,12 +90,13 @@ describe('creating a user', () => {
 
 			const result = await api
 				.post('/api/users/')
+				.send(user)
 				.expect(400)
 				.expect('Content-Type', /application\/json/)
 
 			const { error } = result.body
-			expect(error.type).toBe('minlength')
 			expect(error.path).toBe('password')
+			expect(error.type).toBe('minlength')
 		})
 
 	test('if user with username already exist then return correct status code and error',
@@ -101,18 +104,19 @@ describe('creating a user', () => {
 			const user = {
 				username: 'tomhas',
 				name: 'sfs',
-				password: 'edss',
+				password: 'edsseffef',
 				isAdmin: false,
 			}
 
 			const result = await api
 				.post('/api/users/')
+				.send(user)
 				.expect(400)
 				.expect('Content-Type', /application\/json/)
 
 			const { error } = result.body
-			expect(error.type).toBe('unique')
 			expect(error.path).toBe('username')
+			expect(error.type).toBe('unique')
 		})
 })
 

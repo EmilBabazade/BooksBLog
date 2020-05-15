@@ -8,11 +8,17 @@ const errorHandler = (err, req, res, next) => {
 	// here by checking kind and path of error
 	// and then just put a custom message in error.message
 	if (err.name === 'ValidationError') {
+		let errorChild
+		if (err.errors.username) {
+			errorChild = err.errors.username
+		} else if (err.errors.password) {
+			errorChild = err.errors.password
+		}
 		res.status(400).json({
 			error: {
-				type: err.kind,
-				path: err.path,
-				message: err.message,
+				type: errorChild.kind,
+				path: errorChild.path,
+				message: errorChild.message,
 			},
 		})
 	}
