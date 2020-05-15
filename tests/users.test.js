@@ -36,16 +36,84 @@ describe('many user tests', () => {
 })
 
 describe('creating a user', () => {
-	test('valid username and password works', async () => {})
+	test('valid username and password works', async () => {
+		const user = {
+			username: 'emil144',
+			name: 'emil',
+			password: 'emil2000',
+			isAdmin: false,
+		}
 
-	test('if password length less than 8 return correct status and error message',
-		async () => {})
+		await api
+			.post('/api/users/')
+			.expect(201)
+			.expect('Content-Type', /application\/json/)
 
-	test('username length less than 5 return correct status and error message',
-		async () => {})
+		// correct number of users in db
+		const users = await helper.usersInDb()
+		expect(users).toHaveLength(helper.initialUsers.length + 1)
 
-	test('if user wwith username already exist then return correct status code and error message',
-		async () => {})
+		// user in the db
+		const usernames = users.map((u) => u.username)
+		expect(usernames).toContain(user.username)
+	})
+
+	test('if username length less than 8 return correct status code and error',
+		async () => {
+			const user = {
+				username: 'ad',
+				name: 'sfs',
+				password: 'sfsfefdssa',
+				isAdmin: false,
+			}
+
+			const result = await api
+				.post('/api/users/')
+				.expect(400)
+				.expect('Content-Type', /application\/json/)
+
+			const { error } = result.body
+			expect(error.type).toBe('minlength')
+			expect(error.path).toBe('username')
+		})
+
+	test('if password length less than 5 return correct status code and error',
+		async () => {
+			const user = {
+				username: 'addsw',
+				name: 'sfs',
+				password: 'eds',
+				isAdmin: false,
+			}
+
+			const result = await api
+				.post('/api/users/')
+				.expect(400)
+				.expect('Content-Type', /application\/json/)
+
+			const { error } = result.body
+			expect(error.type).toBe('minlength')
+			expect(error.path).toBe('password')
+		})
+
+	test('if user with username already exist then return correct status code and error',
+		async () => {
+			const user = {
+				username: 'tomhas',
+				name: 'sfs',
+				password: 'edss',
+				isAdmin: false,
+			}
+
+			const result = await api
+				.post('/api/users/')
+				.expect(400)
+				.expect('Content-Type', /application\/json/)
+
+			const { error } = result.body
+			expect(error.type).toBe('unique')
+			expect(error.path).toBe('username')
+		})
 })
 
 // close connection after all

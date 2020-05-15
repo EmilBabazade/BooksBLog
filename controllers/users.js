@@ -12,6 +12,12 @@ userRouter.get('/', async (req, res) => {
 })
 
 // create users
+userRouter.post('/', async (req, res) => {
+
+	// check password
+
+	// hash the password
+})
 
 // delete users, only admin user can do this
 

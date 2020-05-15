@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const logger = require('./utils/logger')
 const config = require('./utils/config')
 const userRouter = require('./controllers/users')
-// const middleware = require('./utils/middleware') no middleware to use yet
+const middleware = require('./utils/middleware')
 
 const app = express()
 
@@ -47,5 +47,12 @@ app.get('/', async (req, res) => {
 app.use('/api/users', userRouter)
 
 /** ******************************************************************* */
+
+app.use(middleware.unknownEndPoint)
+
+// error handler middlewares go below this comment,
+// but i only have a very simple, 1 general error hanlder (might change in future)
+
+app.use(middleware.errorHandler)
 
 module.exports = app

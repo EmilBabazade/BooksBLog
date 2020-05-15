@@ -3,18 +3,16 @@ const User = require('../../models/user')
 
 const initialUsers = [
 	{
-		username: 'root',
+		username: 'admin',
 		name: 'admin',
 		password: 'admin1234',
 		isAdmin: true,
-		blogs: [],
 	},
 	{
 		username: 'tomhas',
 		name: 'tom',
 		password: 'tom1234',
 		isAdmin: false,
-		blogs: [],
 	},
 ]
 
