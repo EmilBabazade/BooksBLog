@@ -3,6 +3,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const logger = require('./utils/logger')
 const config = require('./utils/config')
+const userRouter = require('./controllers/users')
 // const middleware = require('./utils/middleware') no middleware to use yet
 
 const app = express()
@@ -42,6 +43,8 @@ app.get('/', async (req, res) => {
         + '\n\n')
 	res.end()
 })
+
+app.use('/api/users', userRouter)
 
 /** ******************************************************************* */
 

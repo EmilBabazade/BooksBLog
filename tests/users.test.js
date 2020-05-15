@@ -35,6 +35,19 @@ describe('many user tests', () => {
 	})
 })
 
+describe('creating a user', () => {
+	test('valid username and password works', async () => {})
+
+	test('if password length less than 8 return correct status and error message',
+		async () => {})
+
+	test('username length less than 5 return correct status and error message',
+		async () => {})
+
+	test('if user wwith username already exist then return correct status code and error message',
+		async () => {})
+})
+
 // close connection after all
 afterAll(() => {
 	mongoose.connection.close()
