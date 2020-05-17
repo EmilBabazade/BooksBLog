@@ -120,6 +120,30 @@ describe('creating a user', () => {
 		})
 })
 
+describe('User login', () => {
+	describe('correct username and password logs in and returns 200', async () => {
+
+	})
+
+	describe('incorrect username returns 400 and correct error', async () => {})
+
+	describe('incorrect password returns 400 and correct error', async () => {})
+})
+
+// implement after login
+
+// describe('User deletion', () => {
+// 	test('returns status 204 with valid parameters', async () => {})
+
+// 	test('returns 404 when user to be deleted don\'t exist', async () => {
+
+// 	})
+
+// 	test('returns 401 when user deletING is not admin', async () => {
+
+// 	})
+// })
+
 // close connection after all
 afterAll(() => {
 	mongoose.connection.close()

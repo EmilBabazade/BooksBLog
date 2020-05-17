@@ -1,7 +1,9 @@
 require('express-async-errors')
 const bcrypt = require('bcrypt')
 const express = require('express')
+const jwt = require('jsonwebtoken')
 const User = require('../models/user')
+const config = require('../utils/config')
 
 const userRouter = express.Router()
 
@@ -42,5 +44,6 @@ userRouter.post('/', async (req, res) => {
 })
 
 // delete users, only admin user can do this
+
 
 module.exports = userRouter

@@ -28,6 +28,7 @@ userSchema.set('toJSON', {
 		delete returnedObject.__v
 		// don't return password
 		delete returnedObject.passwordHash
+		delete returnedObject.isAdmin
 	}),
 })
 
