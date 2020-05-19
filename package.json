@@ -11,7 +11,11 @@
     "deploy": "echo not implemented yet",
     "deploy:full": "echo not implemented yet",
     "logs:prod": "echo not implemented yet",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "db:start": "sudo service mysql start",
+    "db:stop": "sudo service mysql stop",
+    "db:status": "sudo service mysql status",
+    "db:cli": "mysql -uroot -p"
   },
   "repository": {
     "type": "git",
@@ -31,8 +35,10 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.7",
-    "mongoose-unique-validator": "^2.0.3"
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.9",
+    "tedious": "^8.3.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
